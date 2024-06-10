@@ -107,7 +107,7 @@ extension QuestionListView {
     reactor.state.map { $0.questionList }
       .asDriver(onErrorJustReturn: [Problem]())
       .drive(tableView.rx.items(cellIdentifier: "QuestionCell", cellType: QuestionCell.self)) { idx, item, cell in
-        cell.numLabel.text = "\(item.orderNum)"
+        cell.numLabel.text = "\(idx+1)"
         cell.titleLabel.text = item.question
       }
       .disposed(by: disposeBag)
